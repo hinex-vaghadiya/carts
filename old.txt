@@ -1,0 +1,4 @@
+authentication_classes = [MicroserviceJWTAuthentication]
+from .authentication import MicroserviceJWTAuthentication
+
+product_slug = request.data.get('product_slug')
