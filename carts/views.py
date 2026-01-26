@@ -209,6 +209,26 @@ class PayOrderView(APIView):
         return Response({"order_id": order.id, "status": order.status})
 
 
+class CancelOrderView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [MicroserviceJWTAuthentication]
+
+    @transaction.atomic
+    def post(self, request, order_id):
+        order = Order.objects.get(id=order_id, user_id=request.user.id)
+        if order.status != "PENDING":
+            return Response({"error": "Order already processed"}, status=400)
+
+        order.status = "CANCELLED"
+        order.save()
+
+        return Response({"order_id": order.id, "status": order.status})
+
+
+
+
+
+
 class get_all_ordersView(APIView):
     permission_classes=[IsAuthenticated]
     authentication_classes=[MicroserviceJWTAuthentication]
