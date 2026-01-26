@@ -9,6 +9,7 @@ from rest_framework import serializers
 from .models import Cart, CartItem, Order, OrderItem
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer
 from .authentication import MicroserviceJWTAuthentication
+from rest_framework.permissions import AllowAny
 
 PRODUCT_SERVICE_API = "https://products-k4ov.onrender.com/api/variants/"
 BATCH_SERVICE_API = "https://products-k4ov.onrender.com/api/batches/"
@@ -242,5 +243,6 @@ class get_all_ordersView(APIView):
 
 
 class ActivenowView(APIView):
+    permission_classes = [AllowAny]
     def get(self,request):
         return Response({"message":"Activated"},status=status.HTTP_200_OK)
