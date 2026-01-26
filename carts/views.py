@@ -208,3 +208,14 @@ class PayOrderView(APIView):
 
         return Response({"order_id": order.id, "status": order.status})
 
+
+class get_all_ordersView(APIView):
+    permission_classes=[IsAuthenticated]
+    authentication_classes=[MicroserviceJWTAuthentication]
+
+    def get(self,request):
+        orders=Order.objects.filter(user_id=request.user.id)
+        serializer=OrderSerializer(orders,many=True)
+
+        return Response({"orders":serializer.data},status=status.HTTP_200_OK)
+
