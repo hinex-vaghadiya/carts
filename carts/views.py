@@ -239,3 +239,8 @@ class get_all_ordersView(APIView):
 
         return Response({"orders":serializer.data},status=status.HTTP_200_OK)
 
+
+
+class ActivenowView(APIView):
+    def get(self,request):
+        return Response({"message":"Activated"},status=status.HTTP_200_OK)
