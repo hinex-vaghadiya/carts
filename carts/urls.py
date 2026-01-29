@@ -1,7 +1,7 @@
 from django.urls import path
 from carts.views import (
     CartView, AddToCartView, UpdateCartItemView, DeleteCartItemView,
-    CheckoutView, PayOrderView,get_all_ordersView,CancelOrderView,ActivenowView,,admin_get_all_ordersView
+    CheckoutView, PayOrderView,get_all_ordersView,CancelOrderView,ActivenowView,admin_get_all_ordersView
 )
 
 urlpatterns = [
