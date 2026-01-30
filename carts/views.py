@@ -244,7 +244,7 @@ class admin_get_all_ordersView(APIView):
     permission_classes=[AllowAny]
 
     def get(self,request):
-        orders=Order.objects.filter(user_id=request.user.id)
+        orders=Order.objects.all()
         serializer=OrderSerializer(orders,many=True)
 
         return Response({"orders":serializer.data},status=status.HTTP_200_OK)
