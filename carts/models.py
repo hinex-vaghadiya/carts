@@ -45,6 +45,7 @@ class Order(models.Model):
     order_number = models.CharField(max_length=20, unique=True)
     status = models.CharField(
         max_length=20,
+        default='PENDING',
         choices=[
             ('PENDING', 'Pending'),
             ('PAID', 'Paid'),
