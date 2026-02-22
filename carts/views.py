@@ -198,13 +198,15 @@ class PayOrderView(APIView):
             })
 
         domain = request.build_absolute_uri('/')[:-1] 
+        success_url = request.data.get('success_url', domain + '/payment-success?session_id={CHECKOUT_SESSION_ID}')
+        cancel_url = request.data.get('cancel_url', domain + '/payment-cancel')
 
         try:
             checkout_session = stripe.checkout.Session.create(
                 line_items=line_items,
                 mode='payment',
-                success_url=domain + '/payment-success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=domain + '/payment-cancel',
+                success_url=success_url,
+                cancel_url=cancel_url,
                 metadata={
                     'order_id': str(order.id),
                     'user_id': str(request.user.id),
