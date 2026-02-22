@@ -10,6 +10,10 @@ from .models import Cart, CartItem, Order, OrderItem
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer
 from .authentication import MicroserviceJWTAuthentication
 from rest_framework.permissions import AllowAny
+import stripe
+from django.conf import settings
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 PRODUCT_SERVICE_API = "https://products-k4ov.onrender.com/api/variants/"
 BATCH_SERVICE_API = "https://products-k4ov.onrender.com/api/batches/"
@@ -174,14 +178,117 @@ class PayOrderView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [MicroserviceJWTAuthentication]
 
-    @transaction.atomic
     def post(self, request, order_id):
         order = Order.objects.get(id=order_id, user_id=request.user.id)
         if order.status != "PENDING":
             return Response({"error": "Order already processed"}, status=400)
 
+        # Create Stripe Checkout Session
+        line_items = []
+        for item in order.items.all():
+            line_items.append({
+                'price_data': {
+                    'currency': 'inr', # or 'usd', default based on your locale
+                    'product_data': {
+                        'name': f"{item.product_name} - {item.variant_name}",
+                    },
+                    'unit_amount': int(item.price * 100), # Stripe expects amount in cents/paisa
+                },
+                'quantity': item.quantity,
+            })
+
+        domain = request.build_absolute_uri('/')[:-1] 
+
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                line_items=line_items,
+                mode='payment',
+                success_url=domain + '/payment-success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain + '/payment-cancel',
+                metadata={
+                    'order_id': str(order.id),
+                    'user_id': str(request.user.id),
+                }
+            )
+            
+            order.stripe_session_id = checkout_session.id
+            order.save(update_fields=['stripe_session_id'])
+
+            return Response({
+                "checkout_url": checkout_session.url
+            }, status=200)
+        except Exception as e:
+            return Response({"error": str(e)}, status=500)
+
+class OrderPayStatusView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [MicroserviceJWTAuthentication]
+
+    def get(self, request, order_id):
+        try:
+            order = Order.objects.get(id=order_id, user_id=request.user.id)
+            return Response({"order_id": order.id, "status": order.status}, status=200)
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
+
+import json
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
+@method_decorator(csrf_exempt, name='dispatch')
+class StripeWebhookView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def post(self, request):
+        payload = request.body
+        sig_header = request.headers.get('STRIPE_SIGNATURE')
+        endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, endpoint_secret
+            )
+        except ValueError as e:
+            # Invalid payload
+            return HttpResponse(status=400)
+        except stripe.error.SignatureVerificationError as e:
+            # Invalid signature
+            return HttpResponse(status=400)
+        except Exception as e:
+            return HttpResponse(status=400)
+
+        # Handle the checkout.session.completed event
+        if event['type'] == 'checkout.session.completed':
+            session = event['data']['object']
+            order_id = session.get('metadata', {}).get('order_id')
+            
+            if order_id:
+                try:
+                    order = Order.objects.get(id=order_id)
+                    if order.status == 'PENDING':
+                        self.process_successful_payment(order)
+                except Order.DoesNotExist:
+                    pass
+        elif event['type'] in ['checkout.session.expired', 'checkout.session.async_payment_failed']:
+            session = event['data']['object']
+            order_id = session.get('metadata', {}).get('order_id')
+            if order_id:
+                try:
+                    order = Order.objects.get(id=order_id)
+                    if order.status == 'PENDING':
+                        order.status = 'CANCELLED'
+                        order.save(update_fields=['status'])
+                except Order.DoesNotExist:
+                    pass
+
+        return HttpResponse(status=200)
+
+    @transaction.atomic
+    def process_successful_payment(self, order):
         order.status = "PAID"
-        order.save()
+        order.save(update_fields=['status'])
 
         # Reduce stock via batch API (FIFO by exp_date)
         for item in order.items.all():
@@ -206,8 +313,6 @@ class PayOrderView(APIView):
                 )
                 if update_resp.status_code != 200:
                     raise Exception(f"Failed to update batch {batch['batch_id']}")
-
-        return Response({"order_id": order.id, "status": order.status})
 
 
 class CancelOrderView(APIView):

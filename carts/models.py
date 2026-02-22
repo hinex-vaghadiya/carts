@@ -52,9 +52,9 @@ class Order(models.Model):
             ('DELIVERED', 'Delivered'),
             ('CANCELLED', 'Cancelled'),
         ],
-        default='PENDING'
     )
     total_amount = models.BigIntegerField()
+    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
