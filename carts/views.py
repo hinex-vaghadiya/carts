@@ -376,6 +376,7 @@ class get_all_ordersView(APIView):
 
 class admin_get_all_ordersView(APIView):
     permission_classes=[AllowAny]
+    authentication_classes=[]
 
     def get(self,request):
         orders=Order.objects.all()
