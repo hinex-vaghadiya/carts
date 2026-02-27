@@ -184,6 +184,18 @@ class GetOrderView(APIView):
         except Order.DoesNotExist:
             return Response({"error": "Order not found"}, status=404)
 
+class AdminGetOrderView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+
+    def get(self, request, order_id):
+        try:
+            order = Order.objects.get(id=order_id)
+            serializer = OrderSerializer(order)
+            return Response(serializer.data, status=200)
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
+
 # ----------------- Payment Success -----------------
 class PayOrderView(APIView):
     permission_classes = [IsAuthenticated]
