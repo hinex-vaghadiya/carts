@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.db import transaction
+from django.utils import timezone
 import uuid
 import requests
 from rest_framework import serializers
@@ -280,7 +281,10 @@ class StripeWebhookView(APIView):
                 try:
                     order = Order.objects.get(id=order_id)
                     if order.status == 'PENDING':
-                        order.status = 'CANCELLED'
+                        if event['type'] == 'checkout.session.async_payment_failed':
+                            order.status = 'FAILED'
+                        else:
+                            order.status = 'CANCELLED'
                         order.save(update_fields=['status'])
                 except Order.DoesNotExist:
                     pass
@@ -290,7 +294,8 @@ class StripeWebhookView(APIView):
     @transaction.atomic
     def process_successful_payment(self, order):
         order.status = "PAID"
-        order.save(update_fields=['status'])
+        order.payment_date = timezone.now()
+        order.save(update_fields=['status', 'payment_date'])
 
         # Reduce stock via batch API (FIFO by exp_date)
         for item in order.items.all():
@@ -360,3 +365,33 @@ class ActivenowView(APIView):
     permission_classes = [AllowAny]
     def get(self,request):
         return Response({"message":"Activated"},status=status.HTTP_200_OK)
+
+class AdminUpdateOrderStatusView(APIView):
+    permission_classes = [AllowAny]
+    
+    def patch(self, request, order_id):
+        try:
+            order = Order.objects.get(id=order_id)
+            new_status = request.data.get('status')
+            if new_status in ['SHIPPED', 'DELIVERED']:
+                order.status = new_status
+                if new_status == 'DELIVERED':
+                    order.delivery_date = timezone.now()
+                    order.save(update_fields=['status', 'delivery_date'])
+                else:
+                    order.save(update_fields=['status'])
+                return Response({'message': 'Status updated'}, status=200)
+            return Response({'error': 'Invalid status'}, status=400)
+        except Order.DoesNotExist:
+            return Response({'error': 'Order not found'}, status=404)
+
+class VerifyPurchaseView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, user_id, product_id):
+        has_purchased = OrderItem.objects.filter(
+            order__user_id=user_id,
+            order__status='DELIVERED',
+            product_id=product_id
+        ).exists()
+        return Response({'has_purchased': has_purchased})

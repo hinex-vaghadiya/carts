@@ -49,6 +49,7 @@ class Order(models.Model):
         choices=[
             ('PENDING', 'Pending'),
             ('PAID', 'Paid'),
+            ('FAILED', 'Failed'),
             ('SHIPPED', 'Shipped'),
             ('DELIVERED', 'Delivered'),
             ('CANCELLED', 'Cancelled'),
@@ -57,6 +58,8 @@ class Order(models.Model):
     total_amount = models.BigIntegerField()
     stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    payment_date = models.DateTimeField(null=True, blank=True)
+    delivery_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.order_number

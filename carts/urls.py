@@ -2,7 +2,8 @@ from django.urls import path
 from carts.views import (
     CartView, AddToCartView, UpdateCartItemView, DeleteCartItemView,
     CheckoutView, PayOrderView, OrderPayStatusView, StripeWebhookView,
-    get_all_ordersView, CancelOrderView, ActivenowView, admin_get_all_ordersView
+    get_all_ordersView, CancelOrderView, ActivenowView, admin_get_all_ordersView,
+    AdminUpdateOrderStatusView, VerifyPurchaseView
 )
 
 urlpatterns = [
@@ -17,6 +18,8 @@ urlpatterns = [
     path('order/<int:order_id>/cancel/', CancelOrderView.as_view(), name='cancel-order'),
     path('get-all-orders/', get_all_ordersView.as_view(), name='get-all-orders'),
     path('admin-get-all-orders/', admin_get_all_ordersView.as_view(), name='admin-get-all-orders'),
+    path('admin-orders/<int:order_id>/status/', AdminUpdateOrderStatusView.as_view(), name='admin-update-order-status'),
+    path('verify-purchase/<int:user_id>/<int:product_id>/', VerifyPurchaseView.as_view(), name='verify-purchase'),
     path('active/', ActivenowView.as_view(), name='active'),
 
 ]
