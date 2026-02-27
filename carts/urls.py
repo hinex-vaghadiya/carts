@@ -3,7 +3,7 @@ from carts.views import (
     CartView, AddToCartView, UpdateCartItemView, DeleteCartItemView,
     CheckoutView, PayOrderView, OrderPayStatusView, StripeWebhookView,
     get_all_ordersView, CancelOrderView, ActivenowView, admin_get_all_ordersView,
-    AdminUpdateOrderStatusView, VerifyPurchaseView
+    AdminUpdateOrderStatusView, VerifyPurchaseView, GetOrderView
 )
 
 urlpatterns = [
@@ -12,6 +12,7 @@ urlpatterns = [
     path('cart/item/<int:item_id>/update/', UpdateCartItemView.as_view(), name='cart-item-update'),
     path('cart/item/<int:item_id>/delete/', DeleteCartItemView.as_view(), name='cart-item-delete'),
     path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('order/<int:order_id>/', GetOrderView.as_view(), name='get-order'),
     path('order/<int:order_id>/pay/', PayOrderView.as_view(), name='pay-order'),
     path('order/<int:order_id>/pay/status/', OrderPayStatusView.as_view(), name='order-pay-status'),
     path('stripe/webhook/', StripeWebhookView.as_view(), name='stripe-webhook'),

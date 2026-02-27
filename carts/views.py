@@ -172,7 +172,17 @@ class CheckoutView(APIView):
         serializer = OrderSerializer(order)
         return Response(serializer.data, status=201)
 
+class GetOrderView(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [MicroserviceJWTAuthentication]
 
+    def get(self, request, order_id):
+        try:
+            order = Order.objects.get(id=order_id, user_id=request.user.id)
+            serializer = OrderSerializer(order)
+            return Response(serializer.data, status=200)
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
 
 # ----------------- Payment Success -----------------
 class PayOrderView(APIView):
