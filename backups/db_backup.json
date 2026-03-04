@@ -1,0 +1,1326 @@
+[
+{
+  "model": "carts.cart",
+  "pk": 1,
+  "fields": {
+    "user_id": 16,
+    "total_amount": 1600,
+    "is_active": false,
+    "created_at": "2026-01-15T14:08:28.236Z",
+    "updated_at": "2026-01-15T14:12:36.248Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 2,
+  "fields": {
+    "user_id": 16,
+    "total_amount": 1200,
+    "is_active": false,
+    "created_at": "2026-01-15T14:22:04.761Z",
+    "updated_at": "2026-01-15T14:25:46.205Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 3,
+  "fields": {
+    "user_id": 2,
+    "total_amount": 1600,
+    "is_active": false,
+    "created_at": "2026-01-15T17:17:31.367Z",
+    "updated_at": "2026-01-26T04:49:31.692Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 4,
+  "fields": {
+    "user_id": 16,
+    "total_amount": 1200,
+    "is_active": false,
+    "created_at": "2026-01-18T13:45:48.765Z",
+    "updated_at": "2026-01-18T15:15:39.243Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 5,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 400,
+    "is_active": false,
+    "created_at": "2026-01-24T06:57:47.682Z",
+    "updated_at": "2026-01-26T04:36:30.369Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 6,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T04:39:18.847Z",
+    "updated_at": "2026-01-26T04:39:24.733Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 7,
+  "fields": {
+    "user_id": 2,
+    "total_amount": 1200,
+    "is_active": false,
+    "created_at": "2026-01-26T04:53:13.442Z",
+    "updated_at": "2026-01-26T04:53:41.349Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 8,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 1971,
+    "is_active": false,
+    "created_at": "2026-01-26T05:02:42.016Z",
+    "updated_at": "2026-01-26T07:02:15.856Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 9,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 3600,
+    "is_active": false,
+    "created_at": "2026-01-26T13:13:28.287Z",
+    "updated_at": "2026-01-26T16:40:23.676Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 10,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T16:42:25.376Z",
+    "updated_at": "2026-01-26T16:46:27.472Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 11,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T16:48:07.170Z",
+    "updated_at": "2026-01-26T16:48:12.905Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 12,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 657,
+    "is_active": false,
+    "created_at": "2026-01-26T16:50:00.744Z",
+    "updated_at": "2026-01-26T16:54:44.999Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 13,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 400,
+    "is_active": false,
+    "created_at": "2026-01-26T16:55:04.390Z",
+    "updated_at": "2026-01-26T16:55:15.691Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 14,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 400,
+    "is_active": false,
+    "created_at": "2026-01-26T17:03:03.409Z",
+    "updated_at": "2026-01-26T17:03:25.439Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 15,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T17:04:03.078Z",
+    "updated_at": "2026-01-26T17:04:13.429Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 16,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T17:06:16.684Z",
+    "updated_at": "2026-01-26T17:06:25.506Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 17,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T17:07:22.321Z",
+    "updated_at": "2026-01-26T17:08:04.707Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 18,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T17:18:28.443Z",
+    "updated_at": "2026-01-26T17:18:39.230Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 19,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 46,
+    "is_active": false,
+    "created_at": "2026-01-26T17:20:37.957Z",
+    "updated_at": "2026-01-26T17:21:12.974Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 20,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T17:30:07.216Z",
+    "updated_at": "2026-01-26T17:30:16.144Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 21,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 400,
+    "is_active": false,
+    "created_at": "2026-01-26T17:31:39.372Z",
+    "updated_at": "2026-01-26T17:31:46.630Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 22,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 23,
+    "is_active": false,
+    "created_at": "2026-01-26T17:32:00.915Z",
+    "updated_at": "2026-01-26T17:32:48.046Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 23,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 400,
+    "is_active": false,
+    "created_at": "2026-01-26T17:34:25.543Z",
+    "updated_at": "2026-01-30T01:54:35.406Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 1,
+  "fields": {
+    "cart": 1,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 4,
+    "created_at": "2026-01-15T14:11:56.796Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 2,
+  "fields": {
+    "cart": 2,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-15T14:25:22.432Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 6,
+  "fields": {
+    "cart": 4,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-18T13:46:19.377Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 9,
+  "fields": {
+    "cart": 3,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-18T15:25:50.072Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 10,
+  "fields": {
+    "cart": 5,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-24T06:57:51.353Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 12,
+  "fields": {
+    "cart": 6,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T04:39:20.529Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 13,
+  "fields": {
+    "cart": 3,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-26T04:49:03.241Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 14,
+  "fields": {
+    "cart": 7,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-26T04:53:31.942Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 15,
+  "fields": {
+    "cart": 8,
+    "product_id": 6,
+    "variant_id": 8,
+    "product_name": "dfds",
+    "variant_name": "dfsf",
+    "sku": "DFDS-DFSF-96FE59",
+    "price": 657,
+    "quantity": 3,
+    "created_at": "2026-01-26T07:01:47.918Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 23,
+  "fields": {
+    "cart": 9,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 9,
+    "created_at": "2026-01-26T16:39:02.290Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 24,
+  "fields": {
+    "cart": 10,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:46:24.031Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 25,
+  "fields": {
+    "cart": 11,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:48:08.914Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 26,
+  "fields": {
+    "cart": 12,
+    "product_id": 6,
+    "variant_id": 8,
+    "product_name": "dfds",
+    "variant_name": "dfsf",
+    "sku": "DFDS-DFSF-96FE59",
+    "price": 657,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:54:39.894Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 27,
+  "fields": {
+    "cart": 13,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:55:10.259Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 28,
+  "fields": {
+    "cart": 14,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:03:22.293Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 29,
+  "fields": {
+    "cart": 15,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:04:10.523Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 30,
+  "fields": {
+    "cart": 16,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:06:18.301Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 31,
+  "fields": {
+    "cart": 17,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:07:23.886Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 32,
+  "fields": {
+    "cart": 18,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:18:32.670Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 33,
+  "fields": {
+    "cart": 19,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 2,
+    "created_at": "2026-01-26T17:21:00.972Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 34,
+  "fields": {
+    "cart": 20,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:30:11.269Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 35,
+  "fields": {
+    "cart": 21,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:31:42.502Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 36,
+  "fields": {
+    "cart": 22,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:32:41.273Z"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 37,
+  "fields": {
+    "cart": 23,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-30T01:54:27.561Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 1,
+  "fields": {
+    "user_id": 16,
+    "order_number": "ORD-77D47F8F",
+    "status": "PAID",
+    "total_amount": 1600,
+    "stripe_session_id": null,
+    "created_at": "2026-01-15T14:12:36.220Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 2,
+  "fields": {
+    "user_id": 16,
+    "order_number": "ORD-4E1F23B6",
+    "status": "PAID",
+    "total_amount": 1200,
+    "stripe_session_id": null,
+    "created_at": "2026-01-15T14:25:46.200Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 3,
+  "fields": {
+    "user_id": 16,
+    "order_number": "ORD-0CA51F3D",
+    "status": "PENDING",
+    "total_amount": 1200,
+    "stripe_session_id": null,
+    "created_at": "2026-01-18T15:15:39.233Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 4,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-5C4A99FF",
+    "status": "PENDING",
+    "total_amount": 400,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T04:36:30.365Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 5,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-24CB0CD9",
+    "status": "PENDING",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T04:39:24.730Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 6,
+  "fields": {
+    "user_id": 2,
+    "order_number": "ORD-45700BAF",
+    "status": "PENDING",
+    "total_amount": 1600,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T04:49:31.686Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 7,
+  "fields": {
+    "user_id": 2,
+    "order_number": "ORD-6F5EAD66",
+    "status": "PENDING",
+    "total_amount": 1200,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T04:53:41.322Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 8,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-B2491FE7",
+    "status": "PENDING",
+    "total_amount": 1971,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T07:02:15.845Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 9,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-CB9831A6",
+    "status": "PENDING",
+    "total_amount": 3600,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T16:40:23.653Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 10,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-21293632",
+    "status": "PENDING",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T16:46:27.457Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 11,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-B65B6FDE",
+    "status": "PENDING",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T16:48:12.875Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 12,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-0818D944",
+    "status": "PENDING",
+    "total_amount": 657,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T16:54:44.993Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 13,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-6FF0B2DB",
+    "status": "PENDING",
+    "total_amount": 400,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T16:55:15.675Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 14,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-1B742475",
+    "status": "PENDING",
+    "total_amount": 400,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:03:25.424Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 15,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-BB3F01C7",
+    "status": "PENDING",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:04:13.413Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 16,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-DFD2D3EE",
+    "status": "PENDING",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:06:25.501Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 17,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-45E33956",
+    "status": "PAID",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:08:04.673Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 18,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-FC6A5365",
+    "status": "PENDING",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:18:39.221Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 19,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-39C660F4",
+    "status": "CANCELLED",
+    "total_amount": 46,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:21:12.961Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 20,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-5947B852",
+    "status": "CANCELLED",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:30:16.132Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 21,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-3B69A6CA",
+    "status": "CANCELLED",
+    "total_amount": 400,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:31:46.613Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 22,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-33772693",
+    "status": "PAID",
+    "total_amount": 23,
+    "stripe_session_id": null,
+    "created_at": "2026-01-26T17:32:48.034Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 23,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-D1BFC263",
+    "status": "PAID",
+    "total_amount": 400,
+    "stripe_session_id": null,
+    "created_at": "2026-01-30T01:54:35.399Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 24,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-B84CC4D4",
+    "status": "PENDING",
+    "total_amount": 100,
+    "stripe_session_id": "cs_test_a1tD3cLoeJIg1wFWmxz15GVzG2a2nhtSplH9MJ7qVOWk3IqAHfvJjfXiSC",
+    "created_at": "2026-02-22T15:07:45.383Z",
+    "payment_date": null,
+    "delivery_date": null
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 4,
+    "created_at": "2026-01-15T14:12:36.247Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-15T14:25:46.205Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-18T15:15:39.243Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T04:36:30.369Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 5,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T04:39:24.733Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 6,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T04:49:31.690Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 6,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-26T04:49:31.692Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 7,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 3,
+    "created_at": "2026-01-26T04:53:41.349Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 8,
+    "product_id": 6,
+    "variant_id": 8,
+    "product_name": "dfds",
+    "variant_name": "dfsf",
+    "sku": "DFDS-DFSF-96FE59",
+    "price": 657,
+    "quantity": 3,
+    "created_at": "2026-01-26T07:02:15.853Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 9,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 9,
+    "created_at": "2026-01-26T16:40:23.674Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 10,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:46:27.471Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 11,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:48:12.904Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 12,
+    "product_id": 6,
+    "variant_id": 8,
+    "product_name": "dfds",
+    "variant_name": "dfsf",
+    "sku": "DFDS-DFSF-96FE59",
+    "price": 657,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:54:44.997Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 13,
+    "product_id": 5,
+    "variant_id": 7,
+    "product_name": "dfsf",
+    "variant_name": "v32432",
+    "sku": "DFSF-V32432-C729B1",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T16:55:15.690Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 14,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:03:25.439Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 15,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:04:13.429Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 16,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:06:25.505Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 17,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:08:04.704Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 18,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:18:39.228Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 19,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 2,
+    "created_at": "2026-01-26T17:21:12.973Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 20,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:30:16.142Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 21,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:31:46.629Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 22,
+    "product_id": 7,
+    "variant_id": 9,
+    "product_name": "dsfds",
+    "variant_name": "dsfds",
+    "sku": "DSFDS-DSFDS-1B78C4",
+    "price": 23,
+    "quantity": 1,
+    "created_at": "2026-01-26T17:32:48.045Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 23,
+    "product_id": 4,
+    "variant_id": 5,
+    "product_name": "haldi soap",
+    "variant_name": "pack of 6",
+    "sku": "HALDI-SOAP-PACK-OF-6-83849A",
+    "price": 400,
+    "quantity": 1,
+    "created_at": "2026-01-30T01:54:35.404Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 24,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "Test Product",
+    "variant_name": "Test Variant",
+    "sku": "TEST-SKU",
+    "price": 100,
+    "quantity": 1,
+    "created_at": "2026-02-22T15:07:45.413Z"
+  }
+}
+]
