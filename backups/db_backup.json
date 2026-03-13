@@ -33,6 +33,28 @@
   }
 },
 {
+  "model": "carts.cart",
+  "pk": 4,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 500,
+    "is_active": false,
+    "created_at": "2026-03-13T08:57:14.255Z",
+    "updated_at": "2026-03-13T08:57:55.515Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 5,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 0,
+    "is_active": true,
+    "created_at": "2026-03-13T08:58:04.357Z",
+    "updated_at": "2026-03-13T08:58:04.357Z"
+  }
+},
+{
   "model": "carts.cartitem",
   "pk": 1,
   "fields": {
@@ -78,6 +100,21 @@
   }
 },
 {
+  "model": "carts.cartitem",
+  "pk": 4,
+  "fields": {
+    "cart": 4,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "haldi soap",
+    "variant_name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "quantity": 1,
+    "created_at": "2026-03-13T08:57:42.744Z"
+  }
+},
+{
   "model": "carts.order",
   "pk": 1,
   "fields": {
@@ -108,6 +145,17 @@
     "status": "CONFIRMED",
     "total_amount": 500,
     "created_at": "2026-03-13T08:56:37.595Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 4,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-1D175C33",
+    "status": "CANCELLED",
+    "total_amount": 500,
+    "created_at": "2026-03-13T08:57:55.514Z"
   }
 },
 {
@@ -156,6 +204,21 @@
   }
 },
 {
+  "model": "carts.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "haldi soap",
+    "variant_name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "quantity": 1,
+    "created_at": "2026-03-13T08:57:55.515Z"
+  }
+},
+{
   "model": "carts.transaction",
   "pk": 1,
   "fields": {
@@ -192,6 +255,19 @@
     "status": "SUCCESSFUL",
     "created_at": "2026-03-13T08:56:40.784Z",
     "updated_at": "2026-03-13T08:56:40.784Z"
+  }
+},
+{
+  "model": "carts.transaction",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "stripe_session_id": "cs_test_a1J4Q7ukez3r9IWHGxbNke2stttoezqpYCIBDoVi2GO2WsK3FYpfiCLZsb",
+    "amount": 500,
+    "currency": "inr",
+    "status": "PENDING",
+    "created_at": "2026-03-13T08:57:58.750Z",
+    "updated_at": "2026-03-13T08:57:58.750Z"
   }
 },
 {
