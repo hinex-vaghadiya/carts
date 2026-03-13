@@ -26,6 +26,11 @@ if Cart.objects.count() == 0:
             backup_path = '/tmp/db_backup.json'
             
             data = json.loads(content)
+            
+            # Filter out models that don't belong to this service
+            known_apps = ('carts.', 'contenttypes.', 'auth.', 'admin.', 'sessions.')
+            data = [item for item in data if any(item.get('model', '').startswith(app) for app in known_apps)]
+            
             transactions = []
             deliveries = []
             txn_pk = 1
