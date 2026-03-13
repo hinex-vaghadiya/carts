@@ -415,6 +415,7 @@ class ActivenowView(APIView):
 
 class AdminUpdateOrderStatusView(APIView):
     permission_classes = [AllowAny]
+    authentication_classes = []
     def patch(self, request, order_id):
         try:
             order = Order.objects.get(id=order_id)
