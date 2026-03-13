@@ -48,18 +48,12 @@ class Order(models.Model):
         default='PENDING',
         choices=[
             ('PENDING', 'Pending'),
-            ('PAID', 'Paid'),
-            ('FAILED', 'Failed'),
-            ('SHIPPED', 'Shipped'),
-            ('DELIVERED', 'Delivered'),
+            ('CONFIRMED', 'Confirmed'),
             ('CANCELLED', 'Cancelled'),
         ],
     )
     total_amount = models.BigIntegerField()
-    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    payment_date = models.DateTimeField(null=True, blank=True)
-    delivery_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.order_number
@@ -82,3 +76,48 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.variant_name} x {self.quantity}"
+
+
+class Transaction(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="transactions")
+    stripe_session_id = models.CharField(max_length=255)
+    amount = models.BigIntegerField()
+    currency = models.CharField(max_length=10, default='inr')
+    status = models.CharField(
+        max_length=20,
+        default='PENDING',
+        choices=[
+            ('PENDING', 'Pending'),
+            ('SUCCESSFUL', 'Successful'),
+            ('FAILED', 'Failed'),
+        ],
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Transaction {self.stripe_session_id} - {self.status}"
+
+
+class Delivery(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE, related_name="delivery")
+    tracking_number = models.CharField(max_length=100, blank=True, null=True)
+    courier_partner = models.CharField(max_length=100, blank=True, null=True)
+    status = models.CharField(
+        max_length=20,
+        default='PENDING',
+        choices=[
+            ('PENDING', 'Pending'),
+            ('DISPATCHED', 'Dispatched'),
+            ('IN_TRANSIT', 'In Transit'),
+            ('DELIVERED', 'Delivered'),
+            ('RETURNED', 'Returned'),
+        ],
+    )
+    dispatched_at = models.DateTimeField(null=True, blank=True)
+    delivered_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Delivery for {self.order.order_number} - {self.status}"

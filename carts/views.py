@@ -7,7 +7,7 @@ from django.utils import timezone
 import uuid
 import requests
 from rest_framework import serializers
-from .models import Cart, CartItem, Order, OrderItem
+from .models import Cart, CartItem, Order, OrderItem, Transaction, Delivery
 from .serializers import CartSerializer, CartItemSerializer, OrderSerializer
 from .authentication import MicroserviceJWTAuthentication
 from rest_framework.permissions import AllowAny
@@ -235,9 +235,12 @@ class PayOrderView(APIView):
                     'user_id': str(request.user.id),
                 }
             )
-            
-            order.stripe_session_id = checkout_session.id
-            order.save(update_fields=['stripe_session_id'])
+            Transaction.objects.create(
+                order=order,
+                stripe_session_id=checkout_session.id,
+                amount=order.total_amount,
+                status='PENDING'
+            )
 
             return Response({
                 "checkout_url": checkout_session.url
@@ -288,36 +291,57 @@ class StripeWebhookView(APIView):
         if event['type'] == 'checkout.session.completed':
             session = event['data']['object']
             order_id = session.get('metadata', {}).get('order_id')
+            session_id = session.get('id')
             
             if order_id:
                 try:
                     order = Order.objects.get(id=order_id)
                     if order.status == 'PENDING':
-                        self.process_successful_payment(order)
+                        self.process_successful_payment(order, session_id)
                 except Order.DoesNotExist:
                     pass
         elif event['type'] in ['checkout.session.expired', 'checkout.session.async_payment_failed']:
             session = event['data']['object']
             order_id = session.get('metadata', {}).get('order_id')
+            session_id = session.get('id')
+            
             if order_id:
                 try:
                     order = Order.objects.get(id=order_id)
                     if order.status == 'PENDING':
                         if event['type'] == 'checkout.session.async_payment_failed':
-                            order.status = 'FAILED'
+                            order.status = 'CANCELLED'
                         else:
                             order.status = 'CANCELLED'
                         order.save(update_fields=['status'])
+                        
+                        try:
+                            transaction_record = Transaction.objects.get(order=order, stripe_session_id=session_id)
+                            transaction_record.status = 'FAILED'
+                            transaction_record.save(update_fields=['status'])
+                        except Transaction.DoesNotExist:
+                            pass
                 except Order.DoesNotExist:
                     pass
 
         return HttpResponse(status=200)
 
     @transaction.atomic
-    def process_successful_payment(self, order):
-        order.status = "PAID"
-        order.payment_date = timezone.now()
-        order.save(update_fields=['status', 'payment_date'])
+    def process_successful_payment(self, order, session_id):
+        order.status = "CONFIRMED"
+        order.save(update_fields=['status'])
+
+        try:
+            transaction_record = Transaction.objects.get(order=order, stripe_session_id=session_id)
+            transaction_record.status = 'SUCCESSFUL'
+            transaction_record.save(update_fields=['status'])
+        except Transaction.DoesNotExist:
+            pass
+
+        Delivery.objects.create(
+            order=order,
+            status='PENDING'
+        )
 
         # Reduce stock via batch API (FIFO by exp_date)
         for item in order.items.all():
@@ -391,18 +415,21 @@ class ActivenowView(APIView):
 
 class AdminUpdateOrderStatusView(APIView):
     permission_classes = [AllowAny]
-    
     def patch(self, request, order_id):
         try:
             order = Order.objects.get(id=order_id)
             new_status = request.data.get('status')
-            if new_status in ['SHIPPED', 'DELIVERED']:
-                order.status = new_status
-                if new_status == 'DELIVERED':
-                    order.delivery_date = timezone.now()
-                    order.save(update_fields=['status', 'delivery_date'])
+            if new_status in ['DISPATCHED', 'IN_TRANSIT', 'DELIVERED']:
+                delivery, created = Delivery.objects.get_or_create(order=order)
+                delivery.status = new_status
+                if new_status == 'DISPATCHED':
+                    delivery.dispatched_at = timezone.now()
+                    delivery.save(update_fields=['status', 'dispatched_at'])
+                elif new_status == 'DELIVERED':
+                    delivery.delivered_at = timezone.now()
+                    delivery.save(update_fields=['status', 'delivered_at'])
                 else:
-                    order.save(update_fields=['status'])
+                    delivery.save(update_fields=['status'])
                 return Response({'message': 'Status updated'}, status=200)
             return Response({'error': 'Invalid status'}, status=400)
         except Order.DoesNotExist:
@@ -414,7 +441,7 @@ class VerifyPurchaseView(APIView):
     def get(self, request, user_id, product_id):
         has_purchased = OrderItem.objects.filter(
             order__user_id=user_id,
-            order__status='DELIVERED',
+            order__delivery__status='DELIVERED',
             product_id=product_id
         ).exists()
         return Response({'has_purchased': has_purchased})

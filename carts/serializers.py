@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Cart, CartItem, Order, OrderItem
+from .models import Cart, CartItem, Order, OrderItem, Transaction, Delivery
 
 class CartItemSerializer(serializers.ModelSerializer):
     subtotal = serializers.SerializerMethodField()
@@ -48,9 +48,23 @@ class OrderItemSerializer(serializers.ModelSerializer):
         return obj.subtotal()
 
 
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = '__all__'
+
+
+class DeliverySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Delivery
+        fields = '__all__'
+
+
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
+    transactions = TransactionSerializer(many=True, read_only=True)
+    delivery = DeliverySerializer(read_only=True)
 
     class Meta:
         model = Order
-        fields = ['id', 'user_id', 'order_number', 'status', 'total_amount', 'items']
+        fields = ['id', 'user_id', 'order_number', 'status', 'total_amount', 'items', 'transactions', 'delivery']
