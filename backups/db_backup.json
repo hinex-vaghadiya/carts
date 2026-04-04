@@ -275,12 +275,12 @@
   "pk": 1,
   "fields": {
     "order": 1,
-    "stripe_session_id": "cs_test_a1fk9x5ebV8nzTIDQFsPL897HdBJdlduL9cAIMm2w9EROT8fhFewg9rwkf",
+    "stripe_session_id": "migrated_1",
     "amount": 500,
     "currency": "inr",
     "status": "SUCCESSFUL",
-    "created_at": "2026-03-13T08:48:17.087Z",
-    "updated_at": "2026-03-13T08:48:17.087Z"
+    "created_at": "2026-03-13T08:48:13.157Z",
+    "updated_at": "2026-03-13T08:48:13.157Z"
   }
 },
 {
@@ -288,12 +288,12 @@
   "pk": 2,
   "fields": {
     "order": 2,
-    "stripe_session_id": "cs_test_a1Ss4UmQ5YZYCBXKWvxgSyuHFEbqEGiaw0a5mu9hGOKpwMRBqJk9KExsDQ",
+    "stripe_session_id": "migrated_2",
     "amount": 500,
     "currency": "inr",
     "status": "SUCCESSFUL",
-    "created_at": "2026-03-13T08:54:43.138Z",
-    "updated_at": "2026-03-13T08:54:43.138Z"
+    "created_at": "2026-03-13T08:54:37.476Z",
+    "updated_at": "2026-03-13T08:54:37.476Z"
   }
 },
 {
@@ -301,12 +301,12 @@
   "pk": 3,
   "fields": {
     "order": 3,
-    "stripe_session_id": "cs_test_a1BHOaCyRHAjrerj15Qqp8XFCJX1WagX6cs0B8S4TjYTnWe7E3yP2JoyBC",
+    "stripe_session_id": "migrated_3",
     "amount": 500,
     "currency": "inr",
     "status": "SUCCESSFUL",
-    "created_at": "2026-03-13T08:56:40.784Z",
-    "updated_at": "2026-03-13T08:56:40.784Z"
+    "created_at": "2026-03-13T08:56:37.595Z",
+    "updated_at": "2026-03-13T08:56:37.595Z"
   }
 },
 {
@@ -314,12 +314,12 @@
   "pk": 4,
   "fields": {
     "order": 4,
-    "stripe_session_id": "cs_test_a1J4Q7ukez3r9IWHGxbNke2stttoezqpYCIBDoVi2GO2WsK3FYpfiCLZsb",
+    "stripe_session_id": "migrated_4",
     "amount": 500,
     "currency": "inr",
-    "status": "PENDING",
-    "created_at": "2026-03-13T08:57:58.750Z",
-    "updated_at": "2026-03-13T08:57:58.750Z"
+    "status": "SUCCESSFUL",
+    "created_at": "2026-03-13T08:57:55.514Z",
+    "updated_at": "2026-03-13T08:57:55.514Z"
   }
 },
 {
@@ -327,12 +327,12 @@
   "pk": 5,
   "fields": {
     "order": 5,
-    "stripe_session_id": "cs_test_a1Ow6tBhrX42gWqutPilefiAs0wfan77nggs8GmLIZjsq2NmyWJlhJJSRf",
+    "stripe_session_id": "migrated_5",
     "amount": 500,
     "currency": "inr",
-    "status": "FAILED",
-    "created_at": "2026-03-13T08:58:54.116Z",
-    "updated_at": "2026-03-13T08:58:54.116Z"
+    "status": "SUCCESSFUL",
+    "created_at": "2026-03-13T08:58:48.004Z",
+    "updated_at": "2026-03-13T08:58:48.004Z"
   }
 },
 {
