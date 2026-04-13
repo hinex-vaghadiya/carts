@@ -12,7 +12,10 @@ from .serializers import CartSerializer, CartItemSerializer, OrderSerializer
 from .authentication import MicroserviceJWTAuthentication
 from rest_framework.permissions import AllowAny
 import stripe
+import logging
 from django.conf import settings
+
+logger = logging.getLogger(__name__)
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -292,28 +295,34 @@ class StripeWebhookView(APIView):
             session = event['data']['object']
             order_id = session.get('metadata', {}).get('order_id')
             session_id = session.get('id')
+            logger.info(f"Received checkout.session.completed for Order {order_id}, Session {session_id}")
             
             if order_id:
                 try:
                     order = Order.objects.get(id=order_id)
                     if order.status == 'PENDING':
+                        logger.info(f"Processing successful payment for Order {order_id}")
                         self.process_successful_payment(order, session_id)
+                    else:
+                        logger.info(f"Order {order_id} already has status {order.status}, skipping.")
                 except Order.DoesNotExist:
-                    pass
+                    logger.error(f"Order {order_id} not found for session {session_id}")
+            else:
+                logger.error(f"No order_id found in metadata for session {session_id}")
+
         elif event['type'] in ['checkout.session.expired', 'checkout.session.async_payment_failed']:
             session = event['data']['object']
             order_id = session.get('metadata', {}).get('order_id')
             session_id = session.get('id')
+            logger.info(f"Received {event['type']} for Order {order_id}, Session {session_id}")
             
             if order_id:
                 try:
                     order = Order.objects.get(id=order_id)
                     if order.status == 'PENDING':
-                        if event['type'] == 'checkout.session.async_payment_failed':
-                            order.status = 'CANCELLED'
-                        else:
-                            order.status = 'CANCELLED'
+                        order.status = 'CANCELLED'
                         order.save(update_fields=['status'])
+                        logger.info(f"Order {order_id} marked as CANCELLED due to {event['type']}")
                         
                         try:
                             transaction_record = Transaction.objects.get(order=order, stripe_session_id=session_id)
@@ -328,6 +337,7 @@ class StripeWebhookView(APIView):
 
     @transaction.atomic
     def process_successful_payment(self, order, session_id):
+        # 1. Update Core statuses (Inside Atomic)
         order.status = "CONFIRMED"
         order.save(update_fields=['status'])
 
@@ -336,36 +346,66 @@ class StripeWebhookView(APIView):
             transaction_record.status = 'SUCCESSFUL'
             transaction_record.save(update_fields=['status'])
         except Transaction.DoesNotExist:
-            pass
+            logger.warning(f"Transaction not found for order {order.id} and session {session_id}")
 
-        Delivery.objects.create(
+        # Ensure Delivery record exists
+        Delivery.objects.get_or_create(
             order=order,
-            status='PENDING'
+            defaults={'status': 'PENDING'}
         )
 
+        # 2. Stock Reduction (Wrapped in its own try-except to avoid rolling back Order/Transaction)
+        try:
+            self._reduce_stock_logic(order)
+            logger.info(f"Stock reduced successfully for order {order.id}")
+        except Exception as e:
+            logger.error(f"Stock reduction FAILED for order {order.id} but order remains CONFIRMED: {str(e)}")
+
+    def _reduce_stock_logic(self, order):
         # Reduce stock via batch API (FIFO by exp_date)
         for item in order.items.all():
             qty_to_deduct = item.quantity
+            logger.info(f"Attempting to deduct {qty_to_deduct} for product {item.product_name} (Variant {item.variant_id})")
+            
             resp = requests.get(f"{BATCH_SERVICE_API}?variant={item.variant_id}&is_active=true")
             if resp.status_code != 200:
-                raise Exception(f"Cannot fetch batches for variant {item.variant_id}")
+                raise Exception(f"Cannot fetch batches for variant {item.variant_id}. Code: {resp.status_code}")
+            
             batches = resp.json()
-            batches.sort(key=lambda x: x['exp_date'])
+            if not batches:
+                logger.warning(f"No active batches found for variant {item.variant_id}")
+                continue
+
+            # Sort by exp_date, handle None safely
+            batches.sort(key=lambda x: x.get('exp_date') or '9999-12-31')
 
             for batch in batches:
                 if qty_to_deduct <= 0:
                     break
-                available_qty = batch['qty']
+                
+                available_qty = batch.get('qty', 0)
+                batch_id = batch.get('batch_id')
+                
+                if not batch_id:
+                    logger.warning(f"Batch found without batch_id: {batch}")
+                    continue
+
                 deduct_qty = min(qty_to_deduct, available_qty)
+                if deduct_qty <= 0:
+                    continue
+
                 qty_to_deduct -= deduct_qty
+                new_qty = available_qty - deduct_qty
 
                 # Update batch
                 update_resp = requests.patch(
-                    f"{BATCH_SERVICE_API}{batch['batch_id']}/",
-                    json={"qty": available_qty - deduct_qty}
+                    f"{BATCH_SERVICE_API}{batch_id}/",
+                    json={"qty": new_qty}
                 )
                 if update_resp.status_code != 200:
-                    raise Exception(f"Failed to update batch {batch['batch_id']}")
+                    raise Exception(f"Failed to update batch {batch_id}. Code: {update_resp.status_code}")
+                
+                logger.info(f"Deducted {deduct_qty} from Batch {batch_id}. Remaining in batch: {new_qty}")
 
 
 class CancelOrderView(APIView):

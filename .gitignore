@@ -18,3 +18,6 @@ staticfiles/
 
 # OS
 .DS_Store
+
+# Scratch folders
+scratch/
