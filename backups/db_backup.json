@@ -20,5 +20,27 @@
     "groups": [],
     "user_permissions": []
   }
+},
+{
+  "model": "accounts.accounts",
+  "fields": {
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "date_joined": "2026-04-13T02:36:02.768Z",
+    "name": " ",
+    "username": "user2",
+    "email": "user2@gmail.com",
+    "password": "pbkdf2_sha256$1200000$00QA5l1bRfHJMdiUXKQzdg$1B4nLVKRwXKLGItL8F7ioXEPjcj0XPsFyNb7n5XWWnY=",
+    "role": "user",
+    "address": " ",
+    "mobile_number": 100,
+    "profile_pic": " ",
+    "is_active": true,
+    "groups": [],
+    "user_permissions": []
+  }
 }
 ]
