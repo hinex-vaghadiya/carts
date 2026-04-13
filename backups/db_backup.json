@@ -1,143 +1,90 @@
 [
 {
-  "model": "carts.cart",
-  "pk": 1,
+  "model": "accounts.accounts",
   "fields": {
-    "user_id": 1,
-    "total_amount": 350,
-    "is_active": false,
-    "created_at": "2026-04-13T03:22:22.297Z",
-    "updated_at": "2026-04-13T03:22:40.269Z"
-  }
-},
-{
-  "model": "carts.cart",
-  "pk": 2,
-  "fields": {
-    "user_id": 1,
-    "total_amount": 0,
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "date_joined": "2026-04-04T01:55:49.670Z",
+    "name": "Mithelesh Mavani",
+    "username": "user",
+    "email": "user@gmail.com",
+    "password": "pbkdf2_sha256$1200000$uVUbY4ijwIcGd122TnGZew$Tmcf/NgBtgbJMbChwLEHmV4ePrk1hYjImbKaI6YHrGc=",
+    "role": "user",
+    "address": "21,Rachna Surat",
+    "mobile_number": 989760999,
+    "profile_pic": " ",
     "is_active": true,
-    "created_at": "2026-04-13T03:24:59.057Z",
-    "updated_at": "2026-04-13T03:24:59.057Z"
+    "groups": [],
+    "user_permissions": []
   }
 },
 {
-  "model": "carts.cart",
-  "pk": 3,
+  "model": "accounts.accounts",
   "fields": {
-    "user_id": 4,
-    "total_amount": 500,
-    "is_active": false,
-    "created_at": "2026-04-13T03:25:28.226Z",
-    "updated_at": "2026-04-13T03:25:29.868Z"
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "date_joined": "2026-04-13T02:36:02.768Z",
+    "name": "vivek solanki",
+    "username": "user2",
+    "email": "user2@gmail.com",
+    "password": "pbkdf2_sha256$1200000$00QA5l1bRfHJMdiUXKQzdg$1B4nLVKRwXKLGItL8F7ioXEPjcj0XPsFyNb7n5XWWnY=",
+    "role": "user",
+    "address": "21, ukai",
+    "mobile_number": 100,
+    "profile_pic": " ",
+    "is_active": true,
+    "groups": [],
+    "user_permissions": []
   }
 },
 {
-  "model": "carts.cartitem",
-  "pk": 1,
+  "model": "accounts.accounts",
   "fields": {
-    "cart": 1,
-    "product_id": 2,
-    "variant_id": 2,
-    "product_name": "neem face wash",
-    "variant_name": "vv1",
-    "sku": "NEEM-FACE--VV1-D007C7",
-    "price": 350,
-    "quantity": 1,
-    "created_at": "2026-04-13T03:22:22.923Z"
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "date_joined": "2026-04-13T03:16:15.262Z",
+    "name": " ",
+    "username": "testuser_bb087c",
+    "email": "testuser_bb087c@example.com",
+    "password": "pbkdf2_sha256$1200000$nGhULo4n1wYX3tdXNFo2Dd$Yy2C6AbxfZXSHxsy59REBOxBuHoV4HOAXcxb7PXpdLI=",
+    "role": "user",
+    "address": " ",
+    "mobile_number": 100,
+    "profile_pic": " ",
+    "is_active": true,
+    "groups": [],
+    "user_permissions": []
   }
 },
 {
-  "model": "carts.cartitem",
-  "pk": 2,
+  "model": "accounts.accounts",
   "fields": {
-    "cart": 3,
-    "product_id": 1,
-    "variant_id": 1,
-    "product_name": "haldi soap",
-    "variant_name": "v1",
-    "sku": "HALDI-SOAP-V1-B83AE9",
-    "price": 500,
-    "quantity": 1,
-    "created_at": "2026-04-13T03:25:28.589Z"
-  }
-},
-{
-  "model": "carts.order",
-  "pk": 1,
-  "fields": {
-    "user_id": 1,
-    "order_number": "ORD-1DF81FF7",
-    "status": "PENDING",
-    "total_amount": 350,
-    "created_at": "2026-04-13T03:22:40.267Z"
-  }
-},
-{
-  "model": "carts.order",
-  "pk": 2,
-  "fields": {
-    "user_id": 4,
-    "order_number": "ORD-79A02DE9",
-    "status": "PENDING",
-    "total_amount": 500,
-    "created_at": "2026-04-13T03:25:29.867Z"
-  }
-},
-{
-  "model": "carts.orderitem",
-  "pk": 1,
-  "fields": {
-    "order": 1,
-    "product_id": 2,
-    "variant_id": 2,
-    "product_name": "neem face wash",
-    "variant_name": "vv1",
-    "sku": "NEEM-FACE--VV1-D007C7",
-    "price": 350,
-    "quantity": 1,
-    "created_at": "2026-04-13T03:22:40.268Z"
-  }
-},
-{
-  "model": "carts.orderitem",
-  "pk": 2,
-  "fields": {
-    "order": 2,
-    "product_id": 1,
-    "variant_id": 1,
-    "product_name": "haldi soap",
-    "variant_name": "v1",
-    "sku": "HALDI-SOAP-V1-B83AE9",
-    "price": 500,
-    "quantity": 1,
-    "created_at": "2026-04-13T03:25:29.868Z"
-  }
-},
-{
-  "model": "carts.transaction",
-  "pk": 1,
-  "fields": {
-    "order": 1,
-    "stripe_session_id": "cs_test_a1PPrYdih7vahSv1Yd4aX6KaHajDIhO74PexwbSXBDKhSqQ5QoGhBXW1qx",
-    "amount": 350,
-    "currency": "inr",
-    "status": "PENDING",
-    "created_at": "2026-04-13T03:22:43.127Z",
-    "updated_at": "2026-04-13T03:22:43.127Z"
-  }
-},
-{
-  "model": "carts.transaction",
-  "pk": 2,
-  "fields": {
-    "order": 2,
-    "stripe_session_id": "cs_test_a1VTKZenZfTGFOls2xVXGzNU5THamUnPbXaRlePiEECFhGIFExpHY7Curx",
-    "amount": 500,
-    "currency": "inr",
-    "status": "PENDING",
-    "created_at": "2026-04-13T03:25:31.753Z",
-    "updated_at": "2026-04-13T03:25:31.753Z"
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "date_joined": "2026-04-13T03:25:22.272Z",
+    "name": " ",
+    "username": "live_test_b66ef7",
+    "email": "live_test_b66ef7@gmail.com",
+    "password": "pbkdf2_sha256$1200000$Z6353zIIHq7waK7IzNPy5q$iBahIdLnECxwlUE7uH2F9DsRg40xZ5CNWMlvfQYGNZg=",
+    "role": "user",
+    "address": " ",
+    "mobile_number": 100,
+    "profile_pic": " ",
+    "is_active": true,
+    "groups": [],
+    "user_permissions": []
   }
 }
 ]
