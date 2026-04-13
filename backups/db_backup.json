@@ -68,7 +68,7 @@
   "fields": {
     "user_id": 1,
     "order_number": "ORD-1DF81FF7",
-    "status": "PENDING",
+    "status": "CONFIRMED",
     "total_amount": 350,
     "created_at": "2026-04-13T03:22:40.267Z"
   }
@@ -79,7 +79,7 @@
   "fields": {
     "user_id": 4,
     "order_number": "ORD-79A02DE9",
-    "status": "PENDING",
+    "status": "CONFIRMED",
     "total_amount": 500,
     "created_at": "2026-04-13T03:25:29.867Z"
   }
@@ -122,7 +122,7 @@
     "stripe_session_id": "cs_test_a1PPrYdih7vahSv1Yd4aX6KaHajDIhO74PexwbSXBDKhSqQ5QoGhBXW1qx",
     "amount": 350,
     "currency": "inr",
-    "status": "PENDING",
+    "status": "SUCCESSFUL",
     "created_at": "2026-04-13T03:22:43.127Z",
     "updated_at": "2026-04-13T03:22:43.127Z"
   }
