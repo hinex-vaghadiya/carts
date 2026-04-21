@@ -3,7 +3,7 @@ from carts.views import (
     CartView, AddToCartView, UpdateCartItemView, DeleteCartItemView,
     CheckoutView, PayOrderView, OrderPayStatusView, StripeWebhookView,
     get_all_ordersView, CancelOrderView, ActivenowView, admin_get_all_ordersView,
-    AdminUpdateOrderStatusView, VerifyPurchaseView, GetOrderView, AdminGetOrderView
+    AdminUpdateOrderStatusView, VerifyPurchaseView, GetOrderView, AdminGetOrderView,ConfirmPaymentView
 )
 
 urlpatterns = [
@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin-orders/<int:order_id>/status/', AdminUpdateOrderStatusView.as_view(), name='admin-update-order-status'),
     path('verify-purchase/<int:user_id>/<int:product_id>/', VerifyPurchaseView.as_view(), name='verify-purchase'),
     path('active/', ActivenowView.as_view(), name='active'),
+    path('payment-success/', ConfirmPaymentView.as_view()),
 
 ]

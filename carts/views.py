@@ -224,7 +224,7 @@ class PayOrderView(APIView):
             })
 
         domain = request.build_absolute_uri('/')[:-1] 
-        success_url = request.data.get('success_url', domain + '/payment-success?session_id={CHECKOUT_SESSION_ID}')
+        success_url = domain + f'/payment-success/?order_id={order.id}'
         cancel_url = request.data.get('cancel_url', domain + '/payment-cancel')
 
         try:
@@ -251,6 +251,36 @@ class PayOrderView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=500)
 
+class ConfirmPaymentView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        order_id = request.GET.get("order_id")
+
+        try:
+            order = Order.objects.get(id=order_id)
+
+            if order.status == "PENDING":
+                order.status = "CONFIRMED"
+                order.save()
+
+                Transaction.objects.create(
+                    order=order,
+                    stripe_session_id=f"demo_{uuid.uuid4().hex[:10]}",
+                    amount=order.total_amount,
+                    status="SUCCESSFUL"
+                )
+
+                Delivery.objects.get_or_create(
+                    order=order,
+                    defaults={"status": "PENDING"}
+                )
+
+            return Response({"message": "success", "order_id": order.id})
+
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
+        
 class OrderPayStatusView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [MicroserviceJWTAuthentication]
