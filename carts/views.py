@@ -272,53 +272,36 @@ class StripeWebhookView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = []
 
-    def post(self, request):
-        payload = request.body
-        sig_header = request.headers.get('STRIPE_SIGNATURE')
-        endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
-
-        if not sig_header:
-            logger.error("Missing Stripe signature")
-            return HttpResponse(status=400)
-
+    def post(self, request, order_id):
         try:
-            event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
-            logger.info(f"Stripe event: {event.type}")
-        except Exception:
-            logger.exception("Webhook verification failed")
-            return HttpResponse(status=400)
+            order = Order.objects.get(id=order_id, user_id=request.user.id)
 
-        try:
-            if event.type == 'checkout.session.completed':
-                session = event.data.object
+            if order.status != "PENDING":
+                return Response({"error": "Order already processed"}, status=400)
 
-                metadata = getattr(session, "metadata", {}) or {}
-                order_id = metadata.get('order_id')
-                session_id = session.id
+            # 🔥 Fake session id
+            fake_session_id = f"demo_{uuid.uuid4().hex[:10]}"
 
-                if not order_id:
-                    return HttpResponse(status=200)
+            # Create transaction directly
+            Transaction.objects.create(
+                order=order,
+                stripe_session_id=fake_session_id,
+                amount=order.total_amount,
+                status='SUCCESSFUL'
+            )
 
-                order_id = int(order_id)
+            # Directly call success logic (bypass webhook)
+            webhook = StripeWebhookView()
+            webhook.process_successful_payment(order, fake_session_id)
 
-                order = Order.objects.get(id=order_id)
+            return Response({
+                "message": "Payment successful (DEMO)",
+                "order_id": order.id,
+                "status": "CONFIRMED"
+            }, status=200)
 
-                # ✅ idempotency check
-                if Transaction.objects.filter(
-                    order=order,
-                    stripe_session_id=session_id,
-                    status='SUCCESSFUL'
-                ).exists():
-                    return HttpResponse(status=200)
-
-                if order.status == 'PENDING':
-                    self.process_successful_payment(order, session_id)
-
-            return HttpResponse(status=200)
-
-        except Exception:
-            logger.exception("Webhook processing failed")
-            return HttpResponse(status=500)
+        except Order.DoesNotExist:
+            return Response({"error": "Order not found"}, status=404)
 
     @transaction.atomic
     def process_successful_payment(self, order, session_id):
