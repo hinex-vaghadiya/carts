@@ -277,72 +277,48 @@ class StripeWebhookView(APIView):
         sig_header = request.headers.get('STRIPE_SIGNATURE')
         endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
+        if not sig_header:
+            logger.error("Missing Stripe signature")
+            return HttpResponse(status=400)
+
         try:
-            event = stripe.Webhook.construct_event(
-                payload, sig_header, endpoint_secret
-            )
-        except ValueError as e:
-            # Invalid payload
+            event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
+            logger.info(f"Stripe event: {event.type}")
+        except Exception:
+            logger.exception("Webhook verification failed")
             return HttpResponse(status=400)
-        except stripe.error.SignatureVerificationError as e:
-            # Invalid signature
-            return HttpResponse(status=400)
-        except Exception as e:
-            return HttpResponse(status=400)
-# Handle the checkout.session.completed event
-        if event['type'] == 'checkout.session.completed':
-            session = event['data']['object']
 
-            metadata = getattr(session, "metadata", {}) or {}
-            order_id = metadata.get('order_id')
-            session_id = getattr(session, "id", None)
+        try:
+            if event.type == 'checkout.session.completed':
+                session = event.data.object
 
-            logger.info(f"Received checkout.session.completed for Order {order_id}, Session {session_id}")
-            
-            if order_id:
-                try:
-                    order = Order.objects.get(id=order_id)
-                    if order.status == 'PENDING':
-                        logger.info(f"Processing successful payment for Order {order_id}")
-                        self.process_successful_payment(order, session_id)
-                    else:
-                        logger.info(f"Order {order_id} already has status {order.status}, skipping.")
-                except Order.DoesNotExist:
-                    logger.error(f"Order {order_id} not found for session {session_id}")
-            else:
-                logger.error(f"No order_id found in metadata for session {session_id}")
+                metadata = getattr(session, "metadata", {}) or {}
+                order_id = metadata.get('order_id')
+                session_id = session.id
 
+                if not order_id:
+                    return HttpResponse(status=200)
 
-        elif event['type'] in ['checkout.session.expired', 'checkout.session.async_payment_failed']:
-            session = event['data']['object']
+                order_id = int(order_id)
 
-            metadata = getattr(session, "metadata", {}) or {}
-            order_id = metadata.get('order_id')
-            session_id = getattr(session, "id", None)
+                order = Order.objects.get(id=order_id)
 
-            logger.info(f"Received {event['type']} for Order {order_id}, Session {session_id}")
-            
-            if order_id:
-                try:
-                    order = Order.objects.get(id=order_id)
-                    if order.status == 'PENDING':
-                        order.status = 'CANCELLED'
-                        order.save(update_fields=['status'])
-                        logger.info(f"Order {order_id} marked as CANCELLED due to {event['type']}")
-                        
-                        try:
-                            transaction_record = Transaction.objects.get(
-                                order=order,
-                                stripe_session_id=session_id
-                            )
-                            transaction_record.status = 'FAILED'
-                            transaction_record.save(update_fields=['status'])
-                        except Transaction.DoesNotExist:
-                            pass
-                except Order.DoesNotExist:
-                    pass
+                # ✅ idempotency check
+                if Transaction.objects.filter(
+                    order=order,
+                    stripe_session_id=session_id,
+                    status='SUCCESSFUL'
+                ).exists():
+                    return HttpResponse(status=200)
 
-        return HttpResponse(status=200)
+                if order.status == 'PENDING':
+                    self.process_successful_payment(order, session_id)
+
+            return HttpResponse(status=200)
+
+        except Exception:
+            logger.exception("Webhook processing failed")
+            return HttpResponse(status=500)
 
     @transaction.atomic
     def process_successful_payment(self, order, session_id):
