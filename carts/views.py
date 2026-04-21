@@ -289,12 +289,14 @@ class StripeWebhookView(APIView):
             return HttpResponse(status=400)
         except Exception as e:
             return HttpResponse(status=400)
-
-        # Handle the checkout.session.completed event
+# Handle the checkout.session.completed event
         if event['type'] == 'checkout.session.completed':
             session = event['data']['object']
-            order_id = session.get('metadata', {}).get('order_id')
-            session_id = session.get('id')
+
+            metadata = getattr(session, "metadata", {}) or {}
+            order_id = metadata.get('order_id')
+            session_id = getattr(session, "id", None)
+
             logger.info(f"Received checkout.session.completed for Order {order_id}, Session {session_id}")
             
             if order_id:
@@ -310,10 +312,14 @@ class StripeWebhookView(APIView):
             else:
                 logger.error(f"No order_id found in metadata for session {session_id}")
 
+
         elif event['type'] in ['checkout.session.expired', 'checkout.session.async_payment_failed']:
             session = event['data']['object']
-            order_id = session.get('metadata', {}).get('order_id')
-            session_id = session.get('id')
+
+            metadata = getattr(session, "metadata", {}) or {}
+            order_id = metadata.get('order_id')
+            session_id = getattr(session, "id", None)
+
             logger.info(f"Received {event['type']} for Order {order_id}, Session {session_id}")
             
             if order_id:
@@ -325,7 +331,10 @@ class StripeWebhookView(APIView):
                         logger.info(f"Order {order_id} marked as CANCELLED due to {event['type']}")
                         
                         try:
-                            transaction_record = Transaction.objects.get(order=order, stripe_session_id=session_id)
+                            transaction_record = Transaction.objects.get(
+                                order=order,
+                                stripe_session_id=session_id
+                            )
                             transaction_record.status = 'FAILED'
                             transaction_record.save(update_fields=['status'])
                         except Transaction.DoesNotExist:
