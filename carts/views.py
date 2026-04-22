@@ -224,7 +224,7 @@ class PayOrderView(APIView):
             })
 
         domain = request.build_absolute_uri('/')[:-1] 
-        success_url = domain + f'/payment-success/?order_id={order.id}'
+        success_url = domain + f'/api/payment-success/?order_id={order.id}'
         cancel_url = request.data.get('cancel_url', domain + '/payment-cancel')
 
         try:
