@@ -810,8 +810,8 @@
     "order": 10,
     "tracking_number": null,
     "courier_partner": null,
-    "status": "PENDING",
-    "dispatched_at": null,
+    "status": "DISPATCHED",
+    "dispatched_at": "2026-04-22T00:34:13.468Z",
     "delivered_at": null
   }
 },
