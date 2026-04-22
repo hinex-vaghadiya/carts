@@ -110,6 +110,17 @@
   }
 },
 {
+  "model": "carts.cart",
+  "pk": 11,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 0,
+    "is_active": true,
+    "created_at": "2026-04-22T00:23:54.276Z",
+    "updated_at": "2026-04-22T00:23:54.276Z"
+  }
+},
+{
   "model": "carts.cartitem",
   "pk": 1,
   "fields": {
@@ -364,7 +375,7 @@
   "fields": {
     "user_id": 1,
     "order_number": "ORD-E7DE5A71",
-    "status": "PENDING",
+    "status": "CONFIRMED",
     "total_amount": 500,
     "created_at": "2026-04-22T00:22:48.568Z"
   }
@@ -647,6 +658,31 @@
     "status": "PENDING",
     "created_at": "2026-04-22T00:22:51.381Z",
     "updated_at": "2026-04-22T00:22:51.381Z"
+  }
+},
+{
+  "model": "carts.transaction",
+  "pk": 11,
+  "fields": {
+    "order": 10,
+    "stripe_session_id": "demo_637141eae9",
+    "amount": 500,
+    "currency": "inr",
+    "status": "SUCCESSFUL",
+    "created_at": "2026-04-22T00:23:26.210Z",
+    "updated_at": "2026-04-22T00:23:26.210Z"
+  }
+},
+{
+  "model": "carts.delivery",
+  "pk": 1,
+  "fields": {
+    "order": 10,
+    "tracking_number": null,
+    "courier_partner": null,
+    "status": "PENDING",
+    "dispatched_at": null,
+    "delivered_at": null
   }
 }
 ]
