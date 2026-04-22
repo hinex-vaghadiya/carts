@@ -99,6 +99,17 @@
   }
 },
 {
+  "model": "carts.cart",
+  "pk": 10,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 500,
+    "is_active": false,
+    "created_at": "2026-04-22T00:22:37.093Z",
+    "updated_at": "2026-04-22T00:22:48.572Z"
+  }
+},
+{
   "model": "carts.cartitem",
   "pk": 1,
   "fields": {
@@ -234,6 +245,21 @@
   }
 },
 {
+  "model": "carts.cartitem",
+  "pk": 10,
+  "fields": {
+    "cart": 10,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "haldi soap",
+    "variant_name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "quantity": 1,
+    "created_at": "2026-04-22T00:22:41.844Z"
+  }
+},
+{
   "model": "carts.order",
   "pk": 1,
   "fields": {
@@ -330,6 +356,17 @@
     "status": "PENDING",
     "total_amount": 500,
     "created_at": "2026-04-22T00:14:40.760Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 10,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-E7DE5A71",
+    "status": "PENDING",
+    "total_amount": 500,
+    "created_at": "2026-04-22T00:22:48.568Z"
   }
 },
 {
@@ -468,6 +505,21 @@
   }
 },
 {
+  "model": "carts.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 10,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "haldi soap",
+    "variant_name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "quantity": 1,
+    "created_at": "2026-04-22T00:22:48.571Z"
+  }
+},
+{
   "model": "carts.transaction",
   "pk": 1,
   "fields": {
@@ -582,6 +634,19 @@
     "status": "PENDING",
     "created_at": "2026-04-22T00:14:43.345Z",
     "updated_at": "2026-04-22T00:14:43.345Z"
+  }
+},
+{
+  "model": "carts.transaction",
+  "pk": 10,
+  "fields": {
+    "order": 10,
+    "stripe_session_id": "cs_test_a1yWUGFCdVaVhUGavWaFWxsI7tyqq3czarIlfwh4VyzsZ32gaNlmlBapbE",
+    "amount": 500,
+    "currency": "inr",
+    "status": "PENDING",
+    "created_at": "2026-04-22T00:22:51.381Z",
+    "updated_at": "2026-04-22T00:22:51.381Z"
   }
 }
 ]
