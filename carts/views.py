@@ -260,10 +260,12 @@ class ConfirmPaymentView(APIView):
         try:
             order = Order.objects.get(id=order_id)
 
+            # ✅ Mark order as confirmed (demo success)
             if order.status == "PENDING":
                 order.status = "CONFIRMED"
                 order.save()
 
+                # ✅ Create transaction
                 Transaction.objects.create(
                     order=order,
                     stripe_session_id=f"demo_{uuid.uuid4().hex[:10]}",
@@ -271,15 +273,92 @@ class ConfirmPaymentView(APIView):
                     status="SUCCESSFUL"
                 )
 
+                # ✅ Create delivery (pending)
                 Delivery.objects.get_or_create(
                     order=order,
                     defaults={"status": "PENDING"}
                 )
 
-            return Response({"message": "success", "order_id": order.id})
+            # ✅ SUCCESS HTML PAGE WITH AUTO REDIRECT
+            html = f"""
+            <html>
+            <head>
+                <title>Payment Success</title>
+
+                <meta http-equiv="refresh" content="5;url=https://frontend-s19r.onrender.com/" />
+
+                <style>
+                    body {{
+                        font-family: Arial, sans-serif;
+                        background: #f5fff7;
+                        text-align: center;
+                        padding-top: 100px;
+                    }}
+                    .box {{
+                        background: white;
+                        padding: 40px;
+                        margin: auto;
+                        width: 400px;
+                        border-radius: 12px;
+                        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                    }}
+                    h1 {{
+                        color: #0a5c3a;
+                    }}
+                    .order {{
+                        margin-top: 10px;
+                        font-size: 18px;
+                    }}
+                    .timer {{
+                        margin-top: 15px;
+                        color: #666;
+                        font-size: 14px;
+                    }}
+                </style>
+
+                <script>
+                    let timeLeft = 5;
+
+                    function updateTimer() {{
+                        document.getElementById("timer").innerText = timeLeft;
+                        timeLeft--;
+
+                        if (timeLeft < 0) {{
+                            window.location.href = "https://frontend-s19r.onrender.com/";
+                        }}
+                    }}
+
+                    setInterval(updateTimer, 1000);
+                </script>
+            </head>
+
+            <body>
+                <div class="box">
+                    <h1>Payment Successful 🎉</h1>
+
+                    <div class="order">
+                        <p><b>Order ID:</b> {order.id}</p>
+                        <p><b>Status:</b> CONFIRMED</p>
+                    </div>
+
+                    <p class="timer">
+                        Redirecting to home in <span id="timer">5</span> seconds...
+                    </p>
+                </div>
+            </body>
+            </html>
+            """
+
+            return HttpResponse(html)
 
         except Order.DoesNotExist:
-            return Response({"error": "Order not found"}, status=404)
+            return HttpResponse("""
+                <html>
+                    <body style="text-align:center; padding-top:100px;">
+                        <h1>Order Not Found ❌</h1>
+                    </body>
+                </html>
+            """, status=404)
         
 class OrderPayStatusView(APIView):
     permission_classes = [IsAuthenticated]
