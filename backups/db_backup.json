@@ -125,10 +125,21 @@
   "pk": 12,
   "fields": {
     "user_id": 1,
+    "total_amount": 500,
+    "is_active": false,
+    "created_at": "2026-04-22T00:31:10.368Z",
+    "updated_at": "2026-04-22T00:32:21.363Z"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 13,
+  "fields": {
+    "user_id": 1,
     "total_amount": 0,
     "is_active": true,
-    "created_at": "2026-04-22T00:31:10.368Z",
-    "updated_at": "2026-04-22T00:31:10.368Z"
+    "created_at": "2026-04-22T00:33:02.061Z",
+    "updated_at": "2026-04-22T00:33:02.061Z"
   }
 },
 {
@@ -297,6 +308,21 @@
   }
 },
 {
+  "model": "carts.cartitem",
+  "pk": 12,
+  "fields": {
+    "cart": 12,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "haldi soap",
+    "variant_name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "quantity": 1,
+    "created_at": "2026-04-22T00:32:13.982Z"
+  }
+},
+{
   "model": "carts.order",
   "pk": 1,
   "fields": {
@@ -415,6 +441,17 @@
     "status": "CANCELLED",
     "total_amount": 500,
     "created_at": "2026-04-22T00:31:05.961Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 12,
+  "fields": {
+    "user_id": 1,
+    "order_number": "ORD-49F8E02C",
+    "status": "CONFIRMED",
+    "total_amount": 500,
+    "created_at": "2026-04-22T00:32:21.362Z"
   }
 },
 {
@@ -583,6 +620,21 @@
   }
 },
 {
+  "model": "carts.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 12,
+    "product_id": 1,
+    "variant_id": 1,
+    "product_name": "haldi soap",
+    "variant_name": "v1",
+    "sku": "HALDI-SOAP-V1-B83AE9",
+    "price": 500,
+    "quantity": 1,
+    "created_at": "2026-04-22T00:32:21.362Z"
+  }
+},
+{
   "model": "carts.transaction",
   "pk": 1,
   "fields": {
@@ -726,10 +778,48 @@
   }
 },
 {
+  "model": "carts.transaction",
+  "pk": 12,
+  "fields": {
+    "order": 12,
+    "stripe_session_id": "cs_test_a1cxt04c0sPus264kclmpGwe4dpLZoMpdKJykvhM2Mc9z9fdXzwzxKJmtg",
+    "amount": 500,
+    "currency": "inr",
+    "status": "PENDING",
+    "created_at": "2026-04-22T00:32:24.272Z",
+    "updated_at": "2026-04-22T00:32:24.272Z"
+  }
+},
+{
+  "model": "carts.transaction",
+  "pk": 13,
+  "fields": {
+    "order": 12,
+    "stripe_session_id": "demo_f0f1962288",
+    "amount": 500,
+    "currency": "inr",
+    "status": "SUCCESSFUL",
+    "created_at": "2026-04-22T00:32:56.037Z",
+    "updated_at": "2026-04-22T00:32:56.037Z"
+  }
+},
+{
   "model": "carts.delivery",
   "pk": 1,
   "fields": {
     "order": 10,
+    "tracking_number": null,
+    "courier_partner": null,
+    "status": "PENDING",
+    "dispatched_at": null,
+    "delivered_at": null
+  }
+},
+{
+  "model": "carts.delivery",
+  "pk": 2,
+  "fields": {
+    "order": 12,
     "tracking_number": null,
     "courier_partner": null,
     "status": "PENDING",
