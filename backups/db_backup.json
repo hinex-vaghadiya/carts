@@ -900,8 +900,8 @@
     "order": 12,
     "tracking_number": null,
     "courier_partner": null,
-    "status": "PENDING",
-    "dispatched_at": null,
+    "status": "DISPATCHED",
+    "dispatched_at": "2026-04-22T10:05:05.565Z",
     "delivered_at": null
   }
 },
