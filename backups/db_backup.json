@@ -121,6 +121,17 @@
   }
 },
 {
+  "model": "carts.cart",
+  "pk": 12,
+  "fields": {
+    "user_id": 1,
+    "total_amount": 0,
+    "is_active": true,
+    "created_at": "2026-04-22T00:31:10.368Z",
+    "updated_at": "2026-04-22T00:31:10.368Z"
+  }
+},
+{
   "model": "carts.cartitem",
   "pk": 1,
   "fields": {
@@ -401,7 +412,7 @@
   "fields": {
     "user_id": 1,
     "order_number": "ORD-88B5941C",
-    "status": "PENDING",
+    "status": "CANCELLED",
     "total_amount": 500,
     "created_at": "2026-04-22T00:31:05.961Z"
   }
